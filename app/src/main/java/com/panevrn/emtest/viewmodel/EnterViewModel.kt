@@ -1,5 +1,7 @@
 package com.panevrn.emtest.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.panevrn.domain.usecase.onboarding.CompleteOnboardingUseCase
@@ -14,11 +16,24 @@ class EnterViewModel @Inject constructor(
     private val isOnboardingCompletedUseCase: IsOnboardingCompletedUseCase
 ): ViewModel() {
 
+    private val _email = MutableLiveData("")
+
+    private val _password = MutableLiveData("")
+
+    private val _isLoginEnabled = MutableLiveData(false)
+    val isLoginEnabled: LiveData<Boolean> = _isLoginEnabled
+
+
+    // Метод, выполняющийся при нажатии на кнопку "Продолжить" онбординга
+
     fun completeOnboarding() {
         viewModelScope.launch {
             completeOnboardingUseCase()
         }
     }
+
+
+    // Метод, выполняющийся в методе OnViewCreated() в OnboardingFragment
 
     fun isOnboardingCompleted(): Boolean {
         var result: Boolean = false  // небольшая заглушка
@@ -27,5 +42,35 @@ class EnterViewModel @Inject constructor(
         }
         return result
     }
+
+
+    // Метод, который срабатывает при изменении EditText "email" в AuthFragment
+
+    fun onEmailChanged(newEmail: String) {
+        _email.value = newEmail
+        validate()
+    }
+
+
+    // Метод, который срабатывает при изменении EditText "password" в AuthFragment
+
+    fun onPasswordChanged(newPassword: String) {
+        _password.value = newPassword
+        validate()
+    }
+
+
+    // Метод, выполняющий проверку на корректность введенных данных
+    private fun validate() {
+        _isLoginEnabled.value = isEmailValid(_email.value!!) && _password.value!!.isNotEmpty()
+    }
+
+
+    // Метод, выполняющий проверку "email" на корректность
+    private fun isEmailValid(email: String): Boolean {
+        val regex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
+        return regex.matches(email)
+    }
+
 
 }

@@ -21,12 +21,5 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-//        val navController = findNavController(R.id.nav_host_fragment)
-//
-//        viewModel.startDestination.observe(this) { destination ->
-//            val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-//            navGraph.setStartDestination(destination)
-//            navController.graph = navGraph
-//        }
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.panevrn.emtest.R
 import com.panevrn.emtest.databinding.FragmentOnboardingBinding
 import com.panevrn.emtest.viewmodel.EnterViewModel
@@ -34,13 +35,21 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (viewModel.isOnboardingCompleted()) {
-            findNavController().navigate(R.id.action_onboardingFragment_to_authFragment)
-            return  // ?
+            findNavController().navigate(
+                R.id.action_onboardingFragment_to_authFragment,
+                null,
+                navOptions { popUpTo(R.id.nav_graph) { inclusive = true } }
+            )
+            return
         }
 
         binding.btnContinue.setOnClickListener {
             viewModel.completeOnboarding()
-            findNavController().navigate(R.id.action_onboardingFragment_to_authFragment)
+            findNavController().navigate(
+                R.id.action_onboardingFragment_to_authFragment,
+                null,
+                navOptions { popUpTo(R.id.nav_graph) { inclusive = true } }
+            )
         }
     }
 

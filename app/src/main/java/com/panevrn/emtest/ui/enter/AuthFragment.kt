@@ -68,7 +68,7 @@ class AuthFragment : Fragment() {
             Toast.makeText(requireContext(), "Works!", Toast.LENGTH_SHORT).show()
             // Задаю конкретные настройки при переходе на экран курсов, выбивая из стека предыдущие экраны
             findNavController().navigate(
-                R.id.action_authFragment_to_coursesFragment,
+                R.id.action_authFragment_to_mainFragment,
                 null,
                 navOptions { popUpTo(R.id.nav_graph) { inclusive = true } }
             )

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/coursesFragment">
+
+    <fragment
+        android:id="@+id/coursesFragment"
+        android:name="com.panevrn.emtest.ui.main.CoursesFragment"
+        android:label="Экран со всеми курсами">
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoritesCoursesFragment"
+        android:name="com.panevrn.emtest.ui.main.FavoritesCoursesFragment"
+        android:label="Экран с лайкнутыми курсами">
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.panevrn.emtest.ui.main.AccountFragment"
+        android:label="Экран с профилем пользователя (заглушка)">
+    </fragment>
+
+</navigation>

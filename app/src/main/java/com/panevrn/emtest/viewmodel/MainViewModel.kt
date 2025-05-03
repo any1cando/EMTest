@@ -5,28 +5,19 @@ package com.panevrn.emtest.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.panevrn.domain.usecase.onboarding.IsOnboardingCompletedUseCase
-import com.panevrn.emtest.R
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// Оказалось не нужно
+
+// TODO: Возможно, удалить ViewModel из-за ненадобности
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val isOnboardingCompletedUseCase: IsOnboardingCompletedUseCase
-): ViewModel() {
+class MainViewModel @Inject constructor(): ViewModel() {
 
-    private val _startDestination = MutableLiveData<Int>()
-    val startDestination: LiveData<Int> = _startDestination
+    private val _selectedIcon = MutableLiveData<Int>()
+    val selectedIcon: LiveData<Int> get() = _selectedIcon
 
-    init {
-        viewModelScope.launch {
-            val completed: Boolean = isOnboardingCompletedUseCase()
-            val destination = if (completed) R.id.authFragment else R.id.onboardingFragment
-            _startDestination.postValue(destination)
-        }
+    fun onIconSelected(itemId: Int) {
+        _selectedIcon.value = itemId
     }
 
 }

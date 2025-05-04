@@ -1,6 +1,7 @@
 package com.panevrn.data.mapper
 
 import com.panevrn.data.entity.CourseDto
+import com.panevrn.data.entity.CourseEntity
 import com.panevrn.data.entity.CourseListResponse
 import com.panevrn.domain.model.CourseModel
 
@@ -35,4 +36,26 @@ fun CourseDto.toDomain(): CourseModel {
         publishDate = publishDate
     )
 }
+
+
+fun CourseEntity.toDomain(): CourseModel = CourseModel(
+    id = id,
+    title = title,
+    text = text,
+    price = price,
+    rate = rate,
+    startDate = startDate,
+    publishDate = publishDate,
+    hasLike = true
+)
+
+fun CourseModel.toEntity(): CourseEntity = CourseEntity(
+    id = id,
+    title = title,
+    text = text,
+    price = price,
+    rate = rate,
+    startDate = startDate,
+    publishDate = publishDate
+)
 

@@ -1,10 +1,11 @@
 package com.panevrn.emtest.di
 
 import com.google.gson.Gson
+import com.panevrn.data.dao.FavoritesDao
 import com.panevrn.data.network.ApiService
 import com.panevrn.data.repositoryimpl.CoursesRepositoryImpl
 import com.panevrn.domain.repository.CoursesRepository
-import com.panevrn.domain.usecase.main.GetCoursesUseCase
+import com.panevrn.domain.usecase.main.courses.GetCoursesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,7 +65,7 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideCoursesRepository(apiService: ApiService, gson: Gson): CoursesRepository {
-        return CoursesRepositoryImpl(apiService, gson)
+    fun provideCoursesRepository(apiService: ApiService, gson: Gson, favoritesDao: FavoritesDao): CoursesRepository {
+        return CoursesRepositoryImpl(apiService, gson, favoritesDao)
     }
 }

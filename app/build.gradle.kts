@@ -46,6 +46,12 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
+    // Room runtime
+    implementation("androidx.room:room-runtime:2.7.1")
+
+    // Room annotation processor
+    kapt("androidx.room:room-compiler:2.7.1")
+
     // OkHttp dependency
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 

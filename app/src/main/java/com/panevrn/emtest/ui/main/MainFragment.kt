@@ -12,14 +12,12 @@ import androidx.navigation.navOptions
 import androidx.navigation.ui.setupWithNavController
 import com.panevrn.emtest.R
 import com.panevrn.emtest.databinding.FragmentMainBinding
-import com.panevrn.emtest.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -38,13 +36,6 @@ class MainFragment : Fragment() {
 
         val navController = childFragmentManager.findFragmentById(R.id.fragmentContainerMain)?.findNavController() ?: findNavController()
         binding.bottomNavigationMenu.setupWithNavController(navController)
-
-        // ViewModel будет хранить выбранный экран, который сейчас отображается
-        // TODO: Возможно, удалить ViewModel из-за ненадобности
-        binding.bottomNavigationMenu.setOnItemSelectedListener { item ->
-            viewModel.onIconSelected(item.itemId)
-            false
-        }
 
     }
 

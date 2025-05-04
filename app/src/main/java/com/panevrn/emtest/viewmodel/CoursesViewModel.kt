@@ -6,19 +6,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.panevrn.domain.model.CourseModel
-import com.panevrn.domain.usecase.main.GetCoursesUseCase
+import com.panevrn.domain.usecase.main.common.ToggleLikeCourseUseCase
+import com.panevrn.domain.usecase.main.courses.GetCoursesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 
 @HiltViewModel
 class CoursesViewModel @Inject constructor(
-    private val getCoursesUseCase: GetCoursesUseCase
+    private val getCoursesUseCase: GetCoursesUseCase,
+    private val toggleLikeCourseUseCase: ToggleLikeCourseUseCase
 ): ViewModel() {
 
     private val _courses = MutableLiveData<List<CourseModel>>()
     val courses: LiveData<List<CourseModel>> get() = _courses
+    private var isSorted = true  // Флаг в ViewModel для отображение отсортированных курсов
 
     init {
         loadCourses()
@@ -38,15 +43,27 @@ class CoursesViewModel @Inject constructor(
 
     // Обновляем локально
     fun toggleLike(course: CourseModel) {
-        _courses.value = _courses.value?.map {
-            if (it.id == course.id) it.copy(hasLike = !it.hasLike) else it
+        viewModelScope.launch {
+            toggleLikeCourseUseCase(course)
+            _courses.value = _courses.value?.map {
+                if (it.id == course.id) it.copy(hasLike = !it.hasLike) else it
+            }
         }
+    }
+
+    fun sortCoursesByPublishDate() {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val sortedCourses = _courses.value?.sortedWith(compareBy { LocalDate.parse(it.publishDate, formatter) })
+
+        _courses.value = if(isSorted) sortedCourses else sortedCourses?.reversed()
+        isSorted = !isSorted
     }
 
     fun selectCourse(course: CourseModel) {
         // TODO: Можно сделать навигацию к подробному экрану курса
     }
 
+    // Метод заглушка для хардкода, если что-то не так будет с ответом от сервера
     private fun loadTestCourses() {
         val testCourses = listOf(
             CourseModel(

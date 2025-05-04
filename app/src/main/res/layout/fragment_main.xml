@@ -8,6 +8,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerMain"
 
+        android:background="@color/black"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

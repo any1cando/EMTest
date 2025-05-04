@@ -8,7 +8,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
 import com.panevrn.emtest.R
-import com.panevrn.emtest.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

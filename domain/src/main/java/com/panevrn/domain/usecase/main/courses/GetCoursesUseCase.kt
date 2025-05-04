@@ -1,4 +1,4 @@
-package com.panevrn.domain.usecase.main
+package com.panevrn.domain.usecase.main.courses
 
 import com.panevrn.domain.model.CourseModel
 import com.panevrn.domain.repository.CoursesRepository

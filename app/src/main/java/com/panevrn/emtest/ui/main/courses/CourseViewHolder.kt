@@ -14,7 +14,7 @@ class CourseViewHolder(
     fun bind(course: CourseModel) = with(binding) {
         tvTitle.text = course.title
         tvDescription.text = course.text
-        tvPrice.text = course.price
+        tvPrice.text = "${course.price} ₽"
         tvRating.text = course.rate.toString()
         tvDate.text = course.startDate
 

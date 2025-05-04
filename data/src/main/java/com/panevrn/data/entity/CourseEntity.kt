@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 
 // TODO: Доделать работу в локальной БД, чтобы можно было доставать лайкнутые курсы
-@Entity(tableName = "favorite_courses")
+@Entity(tableName = "favorites_courses")
 data class CourseEntity(
     @PrimaryKey val id: String,
     val title: String,
@@ -14,6 +14,4 @@ data class CourseEntity(
     val rate: Double,
     val startDate: String,
     val publishDate: String,
-    val imageUrl: String,
-    val hasLike: Boolean = true  // всегда true, потому что это таблица "избранное"
 )

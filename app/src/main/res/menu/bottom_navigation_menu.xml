@@ -6,7 +6,7 @@
         android:title="Главная" />
     <item
         android:id="@+id/favoritesCoursesFragment"
-        android:icon="@drawable/ic_main_favorites_courses_menu"
+        android:icon="@drawable/ic_common_favorite_course_false"
         android:title="Избранное" />
     <item
         android:id="@+id/accountFragment"

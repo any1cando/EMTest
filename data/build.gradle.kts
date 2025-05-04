@@ -37,6 +37,9 @@ android {
 dependencies{
     implementation(project(":domain"))
 
+    // OkHttp dependency
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
     // Room runtime
     implementation("androidx.room:room-runtime:2.7.1")
 
@@ -49,6 +52,10 @@ dependencies{
     // Hilt dependency
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    // Retrofit dependency
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

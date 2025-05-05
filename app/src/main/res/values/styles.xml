@@ -6,17 +6,44 @@
         <item name="android:layout_margin">8dp</item>
         <item name="android:padding">12dp</item>
         <item name="android:background">@drawable/chip_background</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white_em</item>
+    </style>
+
+    <style name="CourseChipAngleNegative">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/chip_background_rotate_negative</item>
+        <item name="android:textColor">@color/white_em</item>
+    </style>
+
+    <style name="CourseChipAnglePositive">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/chip_background_rotate_positive</item>
+        <item name="android:textColor">@color/white_em</item>
     </style>
 
     <style name="OkButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/ok_button_background</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white_em</item>
     </style>
 
     <style name="VkButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/ok_button_background</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white_em</item>
+    </style>
+
+    <style name="GreenRoundedButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">328dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="color">@color/white</item>
+        <item name="android:background">@drawable/common_background_button</item>
+        <item name="android:textColor">@color/white_em</item>
     </style>
 
 </resources>

@@ -4,16 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/dark">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="140dp"
         android:text="Тысячи курсов\nв одном месте"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        android:textColor="@color/white_em"
         android:textAlignment="center"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,100 +21,135 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="538dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="244dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintBottom_toTopOf="@id/btnContinue"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
+        <!-- Первый ряд -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <TextView style="@style/CourseChip" android:text="Администрирование"/>
-                <TextView style="@style/CourseChip" android:text="RabbitMQ"/>
+                <TextView style="@style/CourseChipAngleNegative" android:text="RabbitMQ" android:rotation="-15" />
                 <TextView style="@style/CourseChip" android:text="Big Data"/>
+                <TextView style="@style/CourseChip" android:text="Администрирование" />
+                <TextView style="@style/CourseChip" android:text="RabbitMQ" />
             </LinearLayout>
         </HorizontalScrollView>
 
-        <!-- Пример 2 горизонтального ряда -->
+        <!-- Второй ряд -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:overScrollMode="never"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <TextView style="@style/CourseChip" android:text="B2B Mark" />
+                <TextView style="@style/CourseChip" android:text="Парсинг" />
+                <TextView style="@style/CourseChip" android:text="Python-разработка" />
+                <TextView style="@style/CourseChipAnglePositive" android:text="Администрирование" android:rotation="15" />
+                <TextView style="@style/CourseChip" android:text="RabbitMQ" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Третий ряд -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <TextView style="@style/CourseChip" android:text="Three.js" />
+                <TextView style="@style/CourseChip" android:text="Веб дизайн" />
+                <TextView style="@style/CourseChip" android:text="Cinema 4D" />
+                <TextView style="@style/CourseChip" android:text="Парсинг" />
+                <TextView style="@style/CourseChip" android:text="Python-разработка" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Четвертый ряд -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <TextView style="@style/CourseChip" android:text="Администрирование" />
+                <TextView style="@style/CourseChip" android:text="Cinema 4D" />
+                <TextView style="@style/CourseChip" android:text="Big Data" />
+                <TextView style="@style/CourseChip" android:text="B2B Mark" />
+                <TextView style="@style/CourseChip" android:text="Парсинг" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Пятый ряд -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
                 <TextView style="@style/CourseChip" android:text="B2B Mark"/>
-                <TextView style="@style/CourseChip" android:text="Парсинг"/>
-                <TextView style="@style/CourseChip" android:text="Python-разработка"/>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView style="@style/CourseChip" android:text="Three.js"/>
-                <TextView style="@style/CourseChip" android:text="Веб дизайн"/>
-                <TextView style="@style/CourseChip" android:text="Cinema 4D"/>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView style="@style/CourseChip" android:text="Администрирование"/>
-                <TextView style="@style/CourseChip" android:text="RabbitMQ"/>
-                <TextView style="@style/CourseChip" android:text="Big Data"/>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView style="@style/CourseChip" android:text="B2B Mark"/>
-                <TextView style="@style/CourseChip" android:text="Парсинг"/>
-                <TextView style="@style/CourseChip" android:text="Python-разработка"/>
+                <TextView style="@style/CourseChipAngleNegative" android:text="Парсинг" android:rotation="-15"/>
+                <TextView style="@style/CourseChip" android:text="Python-разработка" />
+                <TextView style="@style/CourseChip" android:text="Парсинг" android:rotation="-12" />
+                <TextView style="@style/CourseChip" android:text="Python-разработка" android:rotation="12" />
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -122,17 +157,12 @@
 
     <Button
         android:id="@+id/btnContinue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        style="@style/GreenRoundedButton"
+        android:layout_marginBottom="48dp"
         android:textAllCaps="false"
         android:text="Продолжить"
-        android:backgroundTint="@color/green"
-        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

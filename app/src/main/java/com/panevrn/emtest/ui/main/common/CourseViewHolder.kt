@@ -1,4 +1,4 @@
-package com.panevrn.emtest.ui.main.courses
+package com.panevrn.emtest.ui.main.common
 
 import androidx.recyclerview.widget.RecyclerView
 import com.panevrn.domain.model.CourseModel

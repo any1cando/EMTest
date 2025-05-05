@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.panevrn.emtest.ui.main.MainFragment"
+        android:name="com.panevrn.emtest.ui.main.common.MainFragment"
         android:label="Главный экран">
     </fragment>
 

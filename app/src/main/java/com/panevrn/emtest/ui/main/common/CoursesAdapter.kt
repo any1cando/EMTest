@@ -1,4 +1,4 @@
-package com.panevrn.emtest.ui.main.courses
+package com.panevrn.emtest.ui.main.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

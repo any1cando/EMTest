@@ -60,7 +60,7 @@ class CoursesViewModel @Inject constructor(
     }
 
     fun selectCourse(course: CourseModel) {
-        // TODO: Можно сделать навигацию к подробному экрану курса
+
     }
 
     // Метод заглушка для хардкода, если что-то не так будет с ответом от сервера

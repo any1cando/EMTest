@@ -48,7 +48,7 @@ class FavoritesCoursesViewModel @Inject constructor(
 
 
     fun selectCourse(course: CourseModel) {
-        // TODO: Можно сделать клик на лайкнутый курс и перейти на экран подробной информации
+
     }
 
 }

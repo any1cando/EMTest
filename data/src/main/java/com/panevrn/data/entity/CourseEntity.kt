@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-// TODO: Доделать работу в локальной БД, чтобы можно было доставать лайкнутые курсы
 @Entity(tableName = "favorites_courses")
 data class CourseEntity(
     @PrimaryKey val id: String,

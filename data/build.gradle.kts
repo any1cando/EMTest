@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android") version "2.0.21"
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -37,8 +38,14 @@ android {
 dependencies{
     implementation(project(":domain"))
 
+    // Firebase
+    implementation("com.firebaseui:firebase-ui-auth:9.0.0")
+
     // OkHttp
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
 
     // Room
     implementation("androidx.room:room-runtime:2.7.1")

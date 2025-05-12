@@ -2,6 +2,7 @@ package com.panevrn.emtest.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.firebase.auth.FirebaseAuth
 import com.panevrn.data.repositoryimpl.EnterRepositoryImpl
 import com.panevrn.domain.repository.EnterRepository
 import com.panevrn.domain.usecase.onboarding.CompleteOnboardingUseCase
@@ -22,8 +23,8 @@ object EnterModule {
     }
 
     @Provides
-    fun provideEnterRepository(sharedPreferences: SharedPreferences): EnterRepository {
-        return EnterRepositoryImpl(sharedPreferences)
+    fun provideEnterRepository(sharedPreferences: SharedPreferences, firebaseAuth: FirebaseAuth): EnterRepository {
+        return EnterRepositoryImpl(sharedPreferences, firebaseAuth)
     }
 
     @Provides

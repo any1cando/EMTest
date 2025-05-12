@@ -63,15 +63,23 @@ class AuthFragment : Fragment() {
         }
 
 
-        // Final кейс
+        // Нажимая на кнопку, мы запускаем метод login() из EnterViewModel (отправка логин/пароль)
         binding.btnLogin.setOnClickListener {
-            Toast.makeText(requireContext(), "Works!", Toast.LENGTH_SHORT).show()
-            // Задаю конкретные настройки при переходе на экран курсов, выбивая из стека предыдущие экраны
-            findNavController().navigate(
-                R.id.action_authFragment_to_mainFragment,
-                null,
-                navOptions { popUpTo(R.id.nav_graph) { inclusive = true } }
-            )
+            viewModel.login()
+        }
+
+
+        // Проверяем, мониторя состояние авторизации
+        viewModel.authResult.observe(viewLifecycleOwner) { result ->
+            result.onSuccess {
+                findNavController().navigate(
+                    R.id.action_authFragment_to_mainFragment,
+                    null,
+                    navOptions { popUpTo(R.id.nav_graph) { inclusive = true } }
+                )
+            }.onFailure {
+                Toast.makeText(requireContext(), "Ошибка авторизации", Toast.LENGTH_SHORT).show()
+            }
         }
 
 

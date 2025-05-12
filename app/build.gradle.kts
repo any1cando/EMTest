@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android") version "2.0.21"
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -45,6 +46,11 @@ dependencies {
 
     implementation(project(":domain"))
     implementation(project(":data"))
+
+    // Firebase
+    implementation("com.firebaseui:firebase-ui-auth:9.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
     // Room runtime
     implementation("androidx.room:room-runtime:2.7.1")

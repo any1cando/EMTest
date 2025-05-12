@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "117455405528",
+    "project_id": "emtest-297d3",
+    "storage_bucket": "emtest-297d3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117455405528:android:2b8ae45947dc3142af32ad",
+        "android_client_info": {
+          "package_name": "com.panevrn.emtest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwbYPhpNSgpg9SG8B77_VAD-ZUf6jkhGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

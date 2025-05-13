@@ -14,14 +14,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.panevrn.emtest.R
 import com.panevrn.emtest.databinding.FragmentAuthBinding
-import com.panevrn.emtest.viewmodel.EnterViewModel
+import com.panevrn.emtest.viewmodel.AuthViewModel
+import com.panevrn.emtest.viewmodel.states.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class AuthFragment : Fragment() {
 
-    private val viewModel: EnterViewModel by viewModels()
+    private val viewModel: AuthViewModel by viewModels()
     private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
 
@@ -38,13 +39,18 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 1-ый кейс
-        binding.btnVk.setOnClickListener {
+        binding.btnOkAuth.setOnClickListener {
             openUrl(url = "https://vk.com/")
         }
 
         // 2-ой кейс
-        binding.btnOk.setOnClickListener {
+        binding.btnOkAuth.setOnClickListener {
             openUrl("https://ok.ru/")
+        }
+
+        // Переход к фрагменту регистрации
+        binding.tvRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_authFragment_to_registerFragment)
         }
 
 
@@ -69,16 +75,31 @@ class AuthFragment : Fragment() {
         }
 
 
-        // Проверяем, мониторя состояние авторизации
-        viewModel.authResult.observe(viewLifecycleOwner) { result ->
-            result.onSuccess {
-                findNavController().navigate(
-                    R.id.action_authFragment_to_mainFragment,
-                    null,
-                    navOptions { popUpTo(R.id.nav_graph) { inclusive = true } }
-                )
-            }.onFailure {
-                Toast.makeText(requireContext(), "Ошибка авторизации", Toast.LENGTH_SHORT).show()
+        // Проверяем, мониторя состояние авторизации. От этого будут зависеть: виден ли прогресс
+        // бар и можно ли нажать на кнопку "Вход"
+        viewModel.authState.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                is LoadState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.btnLogin.isEnabled = false
+                }
+                is LoadState.Success -> {
+                    viewModel.resetAuthState()
+
+                    findNavController().navigate(
+                        R.id.action_authFragment_to_mainFragment,
+                        null,
+                        navOptions { popUpTo(R.id.nav_graph) { inclusive = true } }
+                    )
+                }
+                is LoadState.Error -> {
+                    viewModel.resetAuthState()
+                    Toast.makeText(requireContext(), state.message ?: "Ошибка авторизации", Toast.LENGTH_SHORT).show()
+                }
+                is LoadState.Idle -> {
+                    binding.progressBar.visibility = View.GONE
+                    binding.btnLogin.isEnabled = true
+                }
             }
         }
 

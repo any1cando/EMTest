@@ -4,17 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseAuth
 import com.panevrn.domain.usecase.auth.LoginUseCase
 import com.panevrn.domain.usecase.onboarding.CompleteOnboardingUseCase
 import com.panevrn.domain.usecase.onboarding.IsOnboardingCompletedUseCase
+import com.panevrn.emtest.viewmodel.states.LoadState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EnterViewModel @Inject constructor(
-    private val firebase: FirebaseAuth,
+class AuthViewModel @Inject constructor(
     private val completeOnboardingUseCase: CompleteOnboardingUseCase,
     private val isOnboardingCompletedUseCase: IsOnboardingCompletedUseCase,
     private val loginUseCase: LoginUseCase
@@ -29,8 +28,8 @@ class EnterViewModel @Inject constructor(
     val isLoginEnabled: LiveData<Boolean> = _isLoginEnabled
 
     // Поля LiveData для результата авторизации
-    private val _authResult = MutableLiveData<Result<Unit>?>()
-    val authResult: LiveData<Result<Unit>> = _authResult as LiveData<Result<Unit>>
+    private val _authState = MutableLiveData<LoadState>(LoadState.Idle)  // изначальное состояние - ничего не происходит
+    val authState: LiveData<LoadState> = _authState
 
 
     // Метод, выполняющийся при нажатии на кнопку "Продолжить" онбординга
@@ -46,8 +45,14 @@ class EnterViewModel @Inject constructor(
     fun login() {
         val email = _email.value ?: return
         val password = _password.value ?: return
+        _authState.value = LoadState.Loading
         viewModelScope.launch {
-            _authResult.value = loginUseCase(email, password)
+            val result = loginUseCase(email, password)
+            _authState.value = if (result.isSuccess) {
+                LoadState.Success
+            } else {
+                LoadState.Error(result.exceptionOrNull()?.message)
+            }
         }
     }
 
@@ -89,6 +94,11 @@ class EnterViewModel @Inject constructor(
     private fun isEmailValid(email: String): Boolean {
         val regex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
         return regex.matches(email)
+    }
+
+    // Сброс состояния авторизации
+    fun resetAuthState() {
+        _authState.value = LoadState.Idle
     }
 
 

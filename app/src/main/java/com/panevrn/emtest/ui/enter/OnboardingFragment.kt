@@ -10,14 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.panevrn.emtest.R
 import com.panevrn.emtest.databinding.FragmentOnboardingBinding
-import com.panevrn.emtest.viewmodel.EnterViewModel
+import com.panevrn.emtest.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {
 
-    private val viewModel: EnterViewModel by viewModels()
+    private val viewModel: AuthViewModel by viewModels()
     private var _binding: FragmentOnboardingBinding? = null
     private val binding get() = _binding!!
 

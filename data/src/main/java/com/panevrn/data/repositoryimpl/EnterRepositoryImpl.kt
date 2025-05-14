@@ -31,4 +31,13 @@ class EnterRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
+
+    override suspend fun register(email: String, password: String): Result<Unit> {
+        return try {
+            firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }

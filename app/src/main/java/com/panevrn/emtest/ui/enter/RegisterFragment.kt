@@ -17,8 +17,10 @@ import com.panevrn.emtest.databinding.FragmentRegisterBinding
 import com.panevrn.emtest.viewmodel.AuthViewModel
 import com.panevrn.emtest.viewmodel.RegisterViewModel
 import com.panevrn.emtest.viewmodel.states.LoadState
+import dagger.hilt.android.AndroidEntryPoint
 
 // На этот фрагмент пользователь может попасть только из AuthFragment
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private val viewModel: RegisterViewModel by viewModels()
@@ -49,7 +51,6 @@ class RegisterFragment : Fragment() {
 
         // Если пользователь нажимает на "Войти", если у него уже есть аккаунт, то просто возвращаемся на AuthFragment
         binding.tvAuth.setOnClickListener {
-            Toast.makeText(requireContext(), "Puck", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
 
@@ -73,6 +74,11 @@ class RegisterFragment : Fragment() {
             binding.btnRegister.isEnabled = isEnabled
         }
 
+        // Нажимая на кнопку, мы запускаем метод register() из RegisterViewModel (отправка логин/пароль)
+        binding.btnRegister.setOnClickListener {
+            viewModel.register()
+        }
+
         viewModel.registerState.observe(viewLifecycleOwner) { state ->
             when(state) {
                 is LoadState.Loading -> {
@@ -81,12 +87,12 @@ class RegisterFragment : Fragment() {
                 }
                 is LoadState.Success -> {
                     viewModel.resetRegisterState()
-
+                    Toast.makeText(requireContext(), "Успешная регистрация", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
                 }
                 is LoadState.Error -> {
                     viewModel.resetRegisterState()
-                    Toast.makeText(requireContext(), state.message ?: "Ошибка авторизации", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), state.message ?: "Ошибка регистрации", Toast.LENGTH_SHORT).show()
                 }
                 is LoadState.Idle -> {
                     binding.progressBarRegister.visibility = View.GONE

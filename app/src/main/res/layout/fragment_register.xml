@@ -8,6 +8,18 @@
     android:padding="16dp">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textSize="14sp"
+        android:textColor="@color/gray"
+        android:text="Email - выполняется по валидации как в подсказке\nПароль - минимум 6 символов\nПароли в 2-ом и 3-ем полях должны совпадать"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
         android:id="@+id/tvTitleRegister"
         android:layout_width="0dp"
         android:layout_height="36dp"

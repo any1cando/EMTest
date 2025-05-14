@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.panevrn.domain.usecase.auth.LoginUseCase
+import com.panevrn.domain.usecase.enter.LoginUseCase
 import com.panevrn.domain.usecase.onboarding.CompleteOnboardingUseCase
 import com.panevrn.domain.usecase.onboarding.IsOnboardingCompletedUseCase
 import com.panevrn.emtest.viewmodel.states.LoadState

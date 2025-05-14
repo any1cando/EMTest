@@ -1,4 +1,4 @@
-package com.panevrn.domain.usecase.auth
+package com.panevrn.domain.usecase.enter
 
 import com.panevrn.domain.repository.EnterRepository
 
